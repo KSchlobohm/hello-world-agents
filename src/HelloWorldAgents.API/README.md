@@ -107,6 +107,7 @@ app.MapGet("/agent/chat", async (
     [FromKeyedServices("Writer")] AIAgent writer,
     [FromKeyedServices("Editor")] AIAgent editor,
     string prompt,
+    HttpContext httpContext,
     CancellationToken cancellationToken) =>
 {
     Workflow workflow =
@@ -114,7 +115,7 @@ app.MapGet("/agent/chat", async (
             .BuildSequential([writer, editor]);
 
     await using Run run = await InProcessExecution.Default.RunAsync(
-        workflow, prompt, "session-1", cancellationToken);
+        workflow, prompt, httpContext.TraceIdentifier, cancellationToken);
 
     var updates = run.OutgoingEvents
         .OfType<AgentResponseUpdateEvent>()
@@ -208,6 +209,7 @@ app.MapGet("/agent/chat", async (
     [FromKeyedServices("Writer")] AIAgent writer,
     [FromKeyedServices("Editor")] AIAgent editor,
     string prompt,
+    HttpContext httpContext,
     CancellationToken cancellationToken) =>
 {
     Workflow workflow =
@@ -215,7 +217,7 @@ app.MapGet("/agent/chat", async (
             .BuildSequential([writer, editor]);
 
     await using Run run = await InProcessExecution.Default.RunAsync(
-        workflow, prompt, "session-1", cancellationToken);
+        workflow, prompt, httpContext.TraceIdentifier, cancellationToken);
 
     var updates = run.OutgoingEvents
         .OfType<AgentResponseUpdateEvent>()

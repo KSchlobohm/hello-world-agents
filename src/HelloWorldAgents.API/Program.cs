@@ -55,6 +55,7 @@ app.MapGet("/agent/chat", async (
     [FromKeyedServices("Writer")] AIAgent writer,
     [FromKeyedServices("Editor")] AIAgent editor,
     string prompt,
+    HttpContext httpContext,
     CancellationToken cancellationToken) =>
 {
     Workflow workflow =
@@ -62,7 +63,7 @@ app.MapGet("/agent/chat", async (
             .BuildSequential([writer, editor]);
 
     await using Run run = await InProcessExecution.Default.RunAsync(
-        workflow, prompt, "session-1", cancellationToken);
+        workflow, prompt, httpContext.TraceIdentifier, cancellationToken);
 
     // RunAsync streams AgentResponseUpdateEvent chunks — collect and reconstruct
     var updates = run.OutgoingEvents
