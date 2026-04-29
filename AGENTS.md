@@ -5,6 +5,13 @@
 This repository is a personal learning project following along with the blog post:
 [Introducing Microsoft Agent Framework Preview](https://devblogs.microsoft.com/dotnet/introducing-microsoft-agent-framework-preview/)
 
+## Official Documentation
+
+For the latest Agent Framework documentation and guidance, see:
+
+- [Agent Framework Overview](https://learn.microsoft.com/en-us/agent-framework/overview/?pivots=programming-language-csharp)
+- [Microsoft Extensions AI](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai)
+
 ## ⚠️ Code in This Repo May Be Broken
 
 The blog post contains sample code that does **not compile against the published NuGet packages** (v1.3.0 at time of writing). Specific known issues:
