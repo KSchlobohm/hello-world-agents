@@ -1,0 +1,24 @@
+#!/bin/sh
+# Enforce that commits are made from the KSchlobohm GitHub account.
+
+EXPECTED_USER="KSchlobohm"
+
+if ! command -v gh > /dev/null 2>&1; then
+  echo "ERROR: GitHub CLI (gh) not found. Cannot verify GitHub identity."
+  echo "Install gh from https://cli.github.com and authenticate as $EXPECTED_USER"
+  exit 1
+fi
+
+CURRENT_USER=$(gh api user --jq '.login' 2>/dev/null)
+
+if [ -z "$CURRENT_USER" ]; then
+  echo "ERROR: Not authenticated with GitHub CLI."
+  echo "Run: gh auth login"
+  exit 1
+fi
+
+if [ "$CURRENT_USER" != "$EXPECTED_USER" ]; then
+  echo "ERROR: GitHub CLI is authenticated as '$CURRENT_USER', but commits must come from '$EXPECTED_USER'."
+  echo "Switch accounts with: gh auth switch --user $EXPECTED_USER"
+  exit 1
+fi
