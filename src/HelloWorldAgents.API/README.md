@@ -121,6 +121,9 @@ app.MapGet("/agent/chat", async (
         .OfType<AgentResponseUpdateEvent>()
         .ToList();
 
+    if (updates.Count == 0)
+        return Results.Problem("The agent workflow produced no output.", statusCode: 502);
+
     string lastExecutorId = updates.Last().ExecutorId;
 
     string result = string.Concat(
@@ -132,7 +135,7 @@ app.MapGet("/agent/chat", async (
 });
 ```
 
-`InProcessExecution.Default.RunAsync` streams the response as `AgentResponseUpdateEvent` chunks. The last executor in a sequential workflow is always the Editor, so grouping by `ExecutorId` and taking the last one gives the final polished output.
+`InProcessExecution.Default.RunAsync` streams the response as `AgentResponseUpdateEvent` chunks. The last executor in a sequential workflow is always the Editor, so grouping by `ExecutorId` and taking the last one gives the final polished output. If no chunks arrive (e.g., early failure or cancellation), a `502` is returned instead of throwing.
 
 ---
 
@@ -222,6 +225,9 @@ app.MapGet("/agent/chat", async (
     var updates = run.OutgoingEvents
         .OfType<AgentResponseUpdateEvent>()
         .ToList();
+
+    if (updates.Count == 0)
+        return Results.Problem("The agent workflow produced no output.", statusCode: 502);
 
     string lastExecutorId = updates.Last().ExecutorId;
 

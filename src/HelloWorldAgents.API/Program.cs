@@ -70,6 +70,9 @@ app.MapGet("/agent/chat", async (
         .OfType<AgentResponseUpdateEvent>()
         .ToList();
 
+    if (updates.Count == 0)
+        return Results.Problem("The agent workflow produced no output.", statusCode: 502);
+
     string lastExecutorId = updates.Last().ExecutorId;
 
     string result = string.Concat(
