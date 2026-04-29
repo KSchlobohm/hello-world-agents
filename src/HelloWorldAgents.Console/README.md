@@ -9,7 +9,7 @@ A follow-along implementation of the console app from the Microsoft Agent Framew
 
 You need:
 
-- [.NET 9 SDK or greater](https://dotnet.microsoft.com/download)
+- [.NET 10 SDK or greater](https://dotnet.microsoft.com/download)
 - A GitHub Personal Access Token (PAT) with `models` scope — create one in your [GitHub settings](https://github.com/settings/tokens)
 
 Set the token as an environment variable:

@@ -9,7 +9,7 @@ A follow-along implementation of the Minimal Web API from the Microsoft Agent Fr
 
 You need:
 
-- [.NET 9 SDK or greater](https://dotnet.microsoft.com/download)
+- [.NET 10 SDK or greater](https://dotnet.microsoft.com/download)
 - A GitHub Personal Access Token (PAT) with `models` scope — create one in your [GitHub settings](https://github.com/settings/tokens)
 
 ---
