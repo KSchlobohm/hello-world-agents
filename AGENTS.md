@@ -27,3 +27,12 @@ The blog author's own working source code lives here:
 **https://github.com/luisquintanilla/hello-world-agents**
 
 When in doubt about the correct API usage, consult that repository first. It uses `Version="*-*"` (latest prerelease) for the Agent Framework packages, which may have a different API surface than the latest stable release on NuGet.
+
+## 🚨 Console App Runtime Warning
+
+If the console app runs for more than 1 minute without completing, it has likely encountered a runtime error or is hung. Terminate the process and debug for potential issues such as:
+
+- Missing or invalid API configuration (model, endpoint, authentication)
+- Hanging event loop or agent workflow
+- Network connectivity issues
+- Resource exhaustion or deadlock
