@@ -1,6 +1,6 @@
 @HelloWorldAgents.API_HostAddress = http://localhost:5220
 
-GET {{HelloWorldAgents.API_HostAddress}}/weatherforecast/
+GET {{HelloWorldAgents.API_HostAddress}}/agent/chat?prompt=Write a short story about a haunted house.
 Accept: application/json
 
 ###
