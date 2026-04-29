@@ -51,6 +51,16 @@ The blog author's own working source code lives here:
 
 When in doubt about the correct API usage, consult that repository first. It uses `Version="*-*"` (latest prerelease) for the Agent Framework packages, which may have a different API surface than the latest stable release on NuGet.
 
+## 🌐 Running the Web API
+
+When running `HelloWorldAgents.API` and opening a browser to test it, navigate to:
+
+```
+http://localhost:5220/agent/chat?prompt=Write%20a%20short%20story%20about%20a%20haunted%20house.
+```
+
+Do **not** open `/openapi/v1.json` or the root — those do not exercise the agent workflow.
+
 ## 🚨 Console App Runtime Warning
 
 If the console app runs for more than 1 minute without completing, it has likely encountered a runtime error or is hung. Terminate the process and debug for potential issues such as:
