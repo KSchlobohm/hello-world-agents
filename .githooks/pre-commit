@@ -1,5 +1,8 @@
 #!/bin/sh
 # Optionally enforce that commits are made from a configured GitHub account.
+# Set EXPECTED_GITHUB_USER to your GitHub username to enable this check:
+#   setx EXPECTED_GITHUB_USER "your-github-username"
+# Then restart your terminal.
 
 EXPECTED_USER="${EXPECTED_GITHUB_USER:-}"
 
