@@ -1,0 +1,6 @@
+@HelloWorldAgents.API_HostAddress = https://localhost:7180
+
+GET {{HelloWorldAgents.API_HostAddress}}/agent/chat?prompt=Write a short story about a haunted house.
+Accept: application/json
+
+###
